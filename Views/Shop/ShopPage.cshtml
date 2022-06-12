@@ -1,0 +1,241 @@
+﻿@model (List<SaleOff> saleoff, List<Product> products, List<Category> categories)
+
+
+
+
+<main>
+
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>Organi Shop</p>
+                <span> <a href="~/MemberPanel/home.html"> <strong>Home</strong> </a> -->Shop </span>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section>
+        <div class="filter-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="filter">
+                            <div class="cate">
+                                <p>
+                                    Categories
+                                </p>
+                                @foreach (var category in Model.categories)
+	                            {
+                                    <a href="#">@category.Name</a>
+	                            }
+                                
+                            </div>
+
+                            <div class="price">
+                                <p class="name">Price</p>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="slider-range"></div>
+                                    </div>
+                                </div>
+                                <div class="row slider-labels mt-4">
+                                    <div class="col-xs-6 caption" style="color:#7fad39;line-height: 40px;">
+                                        <strong style="color: black;">Min:</strong> <span id="slider-range-value1"></span>
+                                    </div>
+                                    <div class="col-xs-6 text-right caption" style="color:#7fad39">
+                                        <strong style="color: black;">Max:</strong> <span id="slider-range-value2"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form>
+                                            <input type="hidden" name="min-value" value="">
+                                            <input type="hidden" name="max-value" value="">
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="colors">
+                                <p class="name">
+                                    Colors
+                                </p>
+
+                                <div class="color-filter">
+                                    <div class="left">
+                                        <div class="color-white">
+                                            <div class="white" style="border: 2px solid black;margin-top: 6px;">
+
+                                            </div>
+                                            <div><a href="#">White</a></div>
+                                        </div>
+                                        <div class="color-white">
+                                            <div class="white"
+                                                 style="background-color:rgb(233, 66, 66);margin-top: 6px;">
+
+                                            </div>
+                                            <div style="font-weight:200px;"><a href="#">Red</a></div>
+                                        </div>
+                                        <div class="color-white">
+                                            <div class="white"
+                                                 style="background-color:rgb(71, 71, 241);margin-top: 6px;">
+
+                                            </div>
+                                            <div><a href="#">Blue</a></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="right">
+                                        <div class="color-white">
+                                            <div class="white" style="background-color: grey;margin-top: 6px;">
+
+                                            </div>
+                                            <div><a href="#">Grey</a></div>
+                                        </div>
+                                        <div class="color-white">
+                                            <div class="white" style="background-color:black;margin-top: 6px;">
+
+                                            </div>
+                                            <div style="font-weight: 200px;"><a href="#">Black</a></div>
+                                        </div>
+                                        <div class="color-white">
+                                            <div class="white" style="background-color:green;margin-top: 6px;">
+
+                                            </div>
+                                            <div><a href="#">Green</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-9 col-sm-12">
+
+                        <div class="sale-off">
+                            <p>Sale Off</p>
+                        </div>
+
+                        <div class="sale-products">
+                            <div class="owl-carousel owl-theme">
+                                
+                                @foreach (var item in Model.saleoff.Take(6))
+	                            {
+                            <div class="item">
+                                <div class="picture">
+                                    <img src="~/AdminPanel/img/saleoff/@item.Image" alt="meat">
+                                    <div class="icons">
+                                        <div class="heart-icon">
+                                            <a href=""><i class="fas fa-heart"></i></a>
+                                        </div>
+                                        <div class="basket-icon">
+                                            <a href=""> <i class="fas fa-shopping-cart"></i></a>
+
+                                        </div>
+                                        <div class="detail-icon">
+                                            <a href=""> <i class="fas fa-info"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="name">
+                                        <a href="#">@item.Name</a>
+                                    </div>
+                                    <div class="price">
+                                        $@item.NewPrice   <span>$ @item.OldPrice</span>
+                                    </div>
+
+                                </div>
+                            </div>
+	                            }
+                                
+                                
+
+                            </div>
+                        </div>
+                        <hr style="color:rgba(0,0,0,0.4);">
+
+
+
+                        <div class="sort-by-product-count">
+                            <div class="sortby">
+                                <span>Sort By</span>
+                                <button id="default">Default <i class="fas fa-angle-down" id="icon"></i></button>
+                                <div class="sort-content">
+                                    <a href="#">Default</a>
+                                    <a href="#">Name</a>
+                                    <a href="#">Price</a>
+
+                                </div>
+                            </div>
+
+                            <div class="product-count">
+                                <span style="color: rgba(0,0,0,1)">@Model.products.Count</span> <span>Products found</span>
+                            </div>
+                        </div>
+
+                        <div class="products">
+                            <div class="row">
+                                @foreach (var product in Model.products)
+                                {
+                                    <div class="col-lg-4 col-sm-12">
+                                        <div class="picture">
+                                            <img src="~/AdminPanel/img/product/@product.Image" alt="banana">
+                                            <div class="icons">
+                                                <div class="heart-icon">
+                                                    <a href=""><i class="fas fa-heart"></i></a>
+                                                </div>
+                                                <div class="basket-icon">
+                                                    <a href=""> <i class="fas fa-shopping-cart"></i></a>
+                                                </div>
+                                                <div class="detail-icon">
+                                                    <a href=""> <i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+                                                <a href="#">@product.Name</a>
+                                            </div>
+                                            <div class="price">
+                                                $@product.Price
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                
+
+                            </div>
+                        </div>
+
+                        <div class="pagination">
+                            <div class="one active">
+                                1
+                            </div>
+                            <div class="two">
+                                2
+                            </div>
+                            <div class="three">
+                                3
+                            </div>
+                            <div class="count">
+                                >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
